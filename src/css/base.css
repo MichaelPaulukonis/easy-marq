@@ -24,8 +24,8 @@ body {
 /* Grainy texture animation by Geoff Graham https://css-tricks.com/snippets/css/animated-grainy-texture/ */
 
 main::before {
-	/* animation: grain 8s steps(10) infinite;
-	background-image: url(../img/noise.png); */
+	animation: grain 8s steps(10) infinite;
+	background-image: url(../img/noise.png);
 	content: '';
 	height: 300%;
 	left: -50%;

@@ -35,6 +35,18 @@ module.exports = {
           'style-loader',
           'css-loader'
         ]
+      },
+      {
+        test: /\.(png|jpg|jpeg)$/i,
+        include: [/img/],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'img/[name].[ext]'
+            }
+          }
+        ]
       }
     ]
   },
