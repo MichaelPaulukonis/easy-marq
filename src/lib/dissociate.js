@@ -1,8 +1,15 @@
 // ganked from http://cadrpear.tx0.org/dissoc-js/dissociated-press.html
 
+// exclusive of max
 function rand (max) {
-  // the interval is [0, max)
-  return Math.floor(Math.random() * max)
+  return range(0, max)
+}
+
+// exclusive of max
+function range (min, max) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min)) + min
 }
 
 export default function dissociate ({ text, context = 2, quaver = 16, fragments = 100, start = rand(text.length) }) {

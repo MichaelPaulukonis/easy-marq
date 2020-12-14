@@ -33,6 +33,7 @@ main::before {
 	position: fixed;
 	top: -100%;
 	width: 300%;
+	pointer-events: none;
 }
 
 @keyframes grain {
@@ -60,50 +61,18 @@ a:focus {
 	outline: none;
 }
 
-.frame {
-	padding: 3rem 5vw;
-	text-align: center;
-	position: relative;
-	z-index: 1000;
-	line-height: 1;
-}
-
-.frame__title {
-	font-size: 1rem;
-	margin: 0 0 1rem;
-	font-weight: 700;
-}
-
-.frame__links {
-	display: inline;
-}
-
-.frame__links a:not(:last-child),
-.frame__demos a:not(:last-child) {
-	margin-right: 1rem;
-}
-
-.frame__demos {
-	margin: 1rem 0;
-}
-
-.frame__demo--current,
-.frame__demo--current:hover {
-	color: var(--color-text);
-}
-
 .menu {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	padding: 10vh 0 25vh;
+	/* padding: 10vh 0 25vh; */
 	--marquee-width: 100vw;
 	--offset: 20vw;
 	--move-initial: calc(-25% + var(--offset));
 	--move-final: calc(-50% + var(--offset));
-	--item-font-size: 10vw;
+	--item-font-size: 9vh;
 	counter-reset: menu;
 }
 
@@ -125,7 +94,7 @@ a:focus {
 	transition: opacity 0.4s;
 }
 
-/* .menu__item-link::before {
+.menu__item-link::before {
 	all: initial;
 	font-family: sofia-pro, sans-serif;
 	counter-increment: menu;
@@ -134,28 +103,11 @@ a:focus {
 	bottom: 60%;
 	left: 0;
 	pointer-events: none;
-} */
+}
 
 .menu__item-link:hover {
 	transition-duration: 0.1s;
 	opacity: 0;
-}
-
-.menu__item-img {
-	pointer-events: none;
-	position: absolute;
-	height: 50vh;
-	max-height: 400px;
-	opacity: 0;
-	left: 100%;
-	top: 50%;
-	transform: translate3d(calc(-100% - 6vw),-30%,0) translate3d(0,20px,0);
-}
-
-.menu__item-link:hover + .menu__item-img {
-	opacity: 1;
-	transform: translate3d(calc(-100% - 6vw),-30%,0) rotate3d(0,0,1,4deg);
-	transition: all 0.4s;
 }
 
 /* Make sure 3 items are visible in the viewport by setting suitable font size. */
@@ -167,7 +119,6 @@ a:focus {
 	width: var(--marquee-width);
 	overflow: hidden;
 	pointer-events: none;
-	mix-blend-mode: color-burn;
 }
 
 .marquee__inner {
@@ -181,7 +132,7 @@ a:focus {
 	transition: opacity 0.1s;
 }
 
-.menu__item-link:hover ~ .marquee .marquee__inner {
+.menu__item:hover, .menu__item-link:hover ~ .marquee .marquee__inner {
 	animation-play-state: running;
 	opacity: 1;
 	transition-duration: 0.4s;
@@ -247,4 +198,15 @@ a:focus {
 	.frame a {
 		pointer-events: auto;
 	}
+}
+
+:checked ~ .menu .menu__item .marquee .marquee__inner {
+	animation-play-state: running;
+	opacity: 1;
+	transition-duration: 0.4s;
+}
+
+:checked ~ .menu .menu__item .menu__item-link {
+	transition-duration: 0.1s;
+	opacity: 0;
 }

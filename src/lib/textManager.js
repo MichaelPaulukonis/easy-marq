@@ -2,7 +2,7 @@ import defaultText from '../default_text.json'
 import tumblrRandomPost from './tumblr_random'
 import dissociate from './dissociate'
 import tokenize from './tokenize'
-import glue from './rebuild'
+import glue from './glue'
 import wordfilter from 'wordfilter'
 
 let _corpus = []

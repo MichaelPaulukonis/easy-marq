@@ -9,6 +9,11 @@
 - make the "title/link" a shortened version of the scrolled text (so all on-screen)
 - work on sizing (too big right now?)
 
+- look at this [smaller variation](https://codepen.io/michaelpaulukonis/pen/zYKNJvb)
+- some more explanation [here](https://reneroth.org/marquees-in-css/)
+
+- something completely different: <https://tympanus.net/Development/HoverEffectIdeas/index2.html>
+
 ## Credits
 
 - based on this [Article on Codrops](https://tympanus.net/codrops/?p=48796)
