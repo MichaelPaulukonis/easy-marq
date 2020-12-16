@@ -13,6 +13,7 @@ export async function makeCorpus () {
   let corp
   try {
     corp = await tumblrRandomPost()
+    console.log('corpus loaded')
   } catch (_) {
     corp = defaultText.lines
   }

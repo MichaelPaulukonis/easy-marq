@@ -1,5 +1,5 @@
 import Mousetrap from 'mousetrap'
-import { getText } from './lib/textManager'
+import { getText, makeCorpus } from './lib/textManager'
 
 const randomId = _ => (Math.random() * 0x1000000000).toString(36)
 
@@ -27,12 +27,12 @@ const partOfLine = line => {
   return frag
 }
 
-const buildMarqueeBlock = line => {
+const buildMarqueeBlock = (line, direction) => {
   const item = ce('div', { className: 'menu__item', id: randomId() })
   const link = ce('a', { className: 'menu__item-link', textContent: partOfLine(line) })
   const marquee = ce('div', { className: 'marquee' })
-  const inner = ce('div', { className: 'marquee__inner', ariaHidden: 'true' })
-  const spans = new Array(4).fill(1).map(_ => ce('span', { textContent: line }))
+  const inner = ce('div', { className: `marquee__inner ${direction}`, ariaHidden: 'true' })
+  const spans = new Array(4).fill(1).map(_ => ce('span', { textContent: line.length > 20 ? line : `${line} ${line}` }))
   inner.append(...spans)
   marquee.append(inner)
   item.append(link)
@@ -50,7 +50,13 @@ const cleanSlate = () => {
 const marq = async _ => {
   const frags = await getText(10)
   const target = document.getElementById('target')
-  target.append(...frags.map(buildMarqueeBlock))
+  target.append(...frags.map((frag, i) => buildMarqueeBlock(frag, i % 2 === 0 ? 'forward' : 'reverse')))
+}
+
+// ugh the name
+const redo = () => {
+  cleanSlate()
+  marq()
 }
 
 const mouseCommand = fn => _ => {
@@ -58,9 +64,20 @@ const mouseCommand = fn => _ => {
   return false
 }
 
+// redo text lines (from existing corpus)
 Mousetrap.bind('r', mouseCommand(() => {
-  cleanSlate()
-  marq()
+  redo()
+}))
+
+// re-pull corpus
+Mousetrap.bind('t', mouseCommand(() => {
+  makeCorpus()
+  redo()
+}))
+
+Mousetrap.bind('a', mouseCommand(() => {
+  const chBox = document.getElementById('auto')
+  chBox.checked = !chBox.checked
 }))
 
 document.addEventListener('DOMContentLoaded', marq)

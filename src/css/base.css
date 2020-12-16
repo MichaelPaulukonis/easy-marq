@@ -125,7 +125,7 @@ a:focus {
 	width: fit-content;
 	display: flex;
 	position: relative;
-	transform: translate3d(var(--move-initial), 0, 0);
+	transform: translate(var(--move-initial));
 	animation: marquee 5s linear infinite;
 	animation-play-state: paused;
 	opacity: 0;
@@ -157,11 +157,13 @@ a:focus {
 
 @keyframes marquee {
 	0% {
-		transform: translate3d(var(--move-initial), 0, 0);
+		/* transform: translate3d(var(--move-initial), 0, 0); */
+		transform: translate(var(--move-initial));
 	}
 
 	100% {
-		transform: translate3d(var(--move-final), 0, 0);
+		/* transform: translate3d(var(--move-final), 0, 0); */
+		transform: translate(var(--move-final));
 	}
 }
 
@@ -200,13 +202,21 @@ a:focus {
 	}
 }
 
-:checked ~ .menu .menu__item .marquee .marquee__inner {
+:checked#auto ~ .menu .menu__item .marquee .marquee__inner {
 	animation-play-state: running;
 	opacity: 1;
 	transition-duration: 0.4s;
 }
 
-:checked ~ .menu .menu__item .menu__item-link {
+:checked#auto ~ .menu .menu__item .menu__item-link {
 	transition-duration: 0.1s;
 	opacity: 0;
+}
+
+.reverse {
+	animation-direction: reverse;
+}
+
+#auto, [for="auto"] {
+	display: none;
 }
