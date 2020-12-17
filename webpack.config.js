@@ -5,7 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: path.resolve(__dirname, 'src', 'app.js')
+    app: path.resolve(__dirname, 'src', 'app.js'),
+    multi: path.resolve(__dirname, 'src', 'multi.js')
+
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
@@ -37,6 +39,17 @@ module.exports = {
         ]
       },
       {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader'
+        ]
+      },
+      {
         test: /\.(png|jpg|jpeg)$/i,
         include: [/img/],
         use: [
@@ -56,8 +69,16 @@ module.exports = {
       VERSION: JSON.stringify(require('./package.json').version)
     }),
     new HtmlWebpackPlugin({
+      title: 'home',
       template: path.resolve(__dirname, 'src', 'index.html'),
-      inject: 'body'
+      chunks: ['app'],
+      filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'multi',
+      template: path.resolve(__dirname, 'src', 'multi.html'),
+      chunks: ['multi'],
+      filename: 'multi'
     })
   ],
   devtool: 'source-map'

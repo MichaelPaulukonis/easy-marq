@@ -1,0 +1,234 @@
+
+$color-white: #ffffff;
+$color-offwhite: #edf2ff;
+$color-black: #000000;
+$color-blue: #4d7dff;
+
+body {
+    background: #111118;
+}
+
+main {
+    background: $color-white;
+    max-width: 100vh;
+    margin: 0 auto;
+}
+
+.slider {
+    font-family: 'Arial', 'Helvetica', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.-logo {
+    background-color: $color-offwhite;
+    height: 7vh;
+
+    div {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMDAgMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMzEuOSA0OS4zaDUuOHYtMTEuNWg1Ljh2LTEyaDEzdjExLjloNS44djExLjZoNS43djExLjhoNi4xdjEzLjFoLTQ4LjN2LTEzaDYuMWMwLTQgMC03LjkgMC0xMS45em0xMS43IDExLjh2LTEwLjVoLTEwLjZ2MTAuNXptMS4yLTIzLjRoMTAuNXYtMTAuNWgtMTAuNXptNC42IDExLjh2LTEwLjVoLTEwLjR2MTAuNXptMTEuNiAwdi0xMC41aC0xMC40djEwLjV6bS0xNi4yIDExLjVoMTAuNXYtMTAuNGgtMTAuNXptMTEuNiAwaDEwLjV2LTEwLjRoLTEwLjV6bS0xOC43IDExLjd2LTEwLjVoLTEwLjV2MTAuNXptMS4zLS4xaDEwLjV2LTEwLjRoLTEwLjV6bTIyIC4xdi0xMC41aC0xMC40djEwLjV6bTExLjctMTAuNWgtMTAuNXYxMC41aDEwLjV6Ii8+PC9zdmc+);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-size: 4% auto;
+        background-position: center center;
+        background-repeat: repeat-x;
+        transform-origin: center center;
+        animation: slide-linear 13.5s linear infinite;
+        will-change: transform;
+
+        &:nth-child(2) {
+            animation-name: slide-linear-alt;
+        }
+    }
+}
+
+.-double {
+    background: $color-blue;
+    color: $color-white;
+    height: 18vh;
+
+    div {
+        position: absolute;
+        font-size: 9vh;
+        left: 2vh;
+        line-height: 0.9;
+        top: 1vh;
+        bottom: 0;
+        white-space: nowrap;
+        animation: yoyo 5s linear infinite;
+    }
+}
+
+.-fast {
+    color: $color-black;
+    height: 14vh;
+    overflow: hidden;
+    padding: 0;
+    white-space: nowrap;
+
+    div {
+        font-size: 14.5vh;
+        letter-spacing: 1vh;
+        display: inline-block;
+        animation: slide-linear 5s linear infinite;
+    }
+}
+
+.-slow {
+    background: $color-offwhite;
+    color: $color-blue;
+    height: 26vh;
+    font-style: italic;
+    overflow: hidden;
+    padding: 1vh 0;
+    white-space: nowrap;
+
+    div {
+        font-size: 28vh;
+        letter-spacing: 2vh;
+        display: inline-block;
+        animation: slide-linear 30s linear infinite;
+    }
+}
+
+.-names {
+    background: $color-blue;
+    color: $color-white;
+    height: 11vh;
+
+    div {
+        position: absolute;
+        font-size: 10vh;
+        left: 2vh;
+        line-height: 0.9;
+        top: 1vh;
+        bottom: 0;
+        white-space: nowrap;
+        animation: yoyo 6s linear infinite;
+    }
+}
+
+.-contact {
+    background: $color-black;
+    color: $color-white;
+    height: 16vh;
+    overflow: hidden;
+    padding: 1vh 0;
+    white-space: nowrap;
+    animation: blink 0.8s linear infinite;
+
+    div {
+        font-size: 17vh;
+        letter-spacing: 2vh;
+        display: inline-block;
+        animation: slide-linear-double 30s linear infinite;
+
+        &:nth-child(even) {
+            color: $color-blue;
+        }
+    }
+}
+
+.-static {
+    color: $color-blue;
+    font-size: 4.5vh;
+    font-style: italic;
+    height: 4vh;
+    overflow: hidden;
+    padding: 0;
+    white-space: nowrap;
+    animation: bgfade 5s linear infinite;
+
+    div {
+        position: absolute;
+        left: 2vh;
+        top: 0;
+        bottom: 0;
+        white-space: nowrap;
+        animation: yoyo 4s linear infinite;
+    }
+}
+
+@keyframes slide-linear {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide-linear-double {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+}
+
+@keyframes slide-linear-alt {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes yoyo {
+    0% {
+        transform: translateX(0);
+    }
+
+    66% {
+        transform: translateX(calc(95vh - 100%));
+
+        @media screen and (orientation:landscape) {
+            transform: translateX(calc(95vw - 100%));
+        }
+    }
+
+    0% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    49% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes bgfade {
+    0% {
+        background-color: $color-white;
+    }
+
+    50% {
+        background-color: $color-blue;
+    }
+
+    100% {
+        background-color: $color-white;
+    }
+}
