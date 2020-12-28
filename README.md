@@ -11,6 +11,7 @@
 
 - look at this [smaller variation](https://codepen.io/michaelpaulukonis/pen/zYKNJvb)
 - some more explanation [here](https://reneroth.org/marquees-in-css/)
+- [my codepen copy](https://codepen.io/michaelpaulukonis/pen/KKgWaYX)
 
 - something completely different: <https://tympanus.net/Development/HoverEffectIdeas/index2.html>
 

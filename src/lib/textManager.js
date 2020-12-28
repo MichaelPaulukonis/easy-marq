@@ -2,7 +2,7 @@ import defaultText from '../default_text.json'
 import tumblrRandomPost from './tumblr_random'
 import dissociate from './dissociate'
 import tokenize from './tokenize'
-import glue from './glue'
+import { glue, glue2 } from './glue'
 import wordfilter from 'wordfilter'
 
 let _corpus = []
@@ -42,6 +42,25 @@ export async function getText (count) {
 
   const tokens = tokenize(munged)
   const lines = glue(count)(tokens)
+
+  return lines
+}
+
+export async function getText2 (size) {
+  if (_corpus.length === 0) {
+    _corpus = await makeCorpus()
+  }
+
+  const frgs = [10, 20, 50, 75, 100, 200, 200, 300, 300, 400, 400, 400, 500, 500, 500, 500, 500, 1000, 1000]
+  const fragments = frgs[rand(frgs.length)]
+  const qvs = [1, 2, 5, 7, 10, 10, 10, 10, 15, 20]
+  const quaver = qvs[rand(qvs.length)]
+  const cntxs = [1, 1, 1, 2, 2, 3, 5]
+  const context = cntxs[rand(cntxs.length)]
+  const munged = dissociate({ context, quaver, text: _corpus, fragments })
+
+  const tokens = tokenize(munged)
+  const lines = glue2(size)(tokens) // could be waaaaay to large
 
   return lines
 }
